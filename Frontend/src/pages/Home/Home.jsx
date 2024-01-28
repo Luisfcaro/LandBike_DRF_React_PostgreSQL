@@ -1,9 +1,9 @@
-import './Home.scss';
+import './Home.css';
 import React, { useState, useEffect } from 'react';
 
 
-export function Home() {
+export default function Home() {
   return (
-    <div>Home</div>
+    <div>Homeszdfxcghvjkljhigdfsafghjklñ</div>
   )
 }

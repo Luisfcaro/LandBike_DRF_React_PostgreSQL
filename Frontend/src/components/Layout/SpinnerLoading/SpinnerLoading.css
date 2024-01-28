@@ -1,0 +1,118 @@
+.spinner {
+  display: block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.spinner .ring {
+  display: block;
+  margin: auto;
+  position: relative;
+  background: transparent;
+  border: 3px solid #3c3c3c;
+  border-radius: 50%;
+  text-align: center;
+  font-family: sans-serif;
+  color: #008f88;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #008f88;
+  box-shadow: 0 0 20px rgba(0,0,0,.5);
+}
+
+.spinner .ring:before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top: 3px solid #008f88;
+  border-right: 3px solid #008f88;
+  border-radius: 50%;
+  animation: animateC 2s linear infinite;
+  box-sizing: border-box;
+}
+
+.spinner .ring span {
+  display: block;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 50%;
+  height: 4px;
+  background: transparent;
+  transform-origin: left;
+  animation: animate 2s linear infinite;
+}
+
+.spinner .ring span:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #008f88;
+  top: -6px;
+  right: -8px;
+  box-shadow: 0 0 20px #008f88;
+}
+
+@media screen and (max-width: 576px) {
+  .spinner {
+      min-height: 79vh;
+  }
+  .spinner .ring {
+      margin-top: 10%;
+      width: 120px;
+      height: 120px;
+      font-size: 13px;
+      line-height: 120px;
+  }
+}
+
+@media screen and (min-width: 577px) {
+  .spinner {
+      min-height: 77vh;
+  }
+  .spinner .ring {
+      margin-top: 10%;
+      width: 135px;
+      height: 135px;
+      font-size: 16px;
+      line-height: 135px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .spinner {
+      min-height: 76vh;
+  }
+  .spinner .ring {
+      margin-top: 3%;
+      width: 150px;
+      height: 150px;
+      font-size: 20px;
+      line-height: 150px;
+  }
+}
+
+@keyframes animateC {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes animate {
+  0% {
+      transform: rotate(45deg);
+  }
+  100% {
+      transform: rotate(405deg);
+  }
+}

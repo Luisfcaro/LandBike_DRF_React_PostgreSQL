@@ -1,6 +1,17 @@
-export function StationsList() {
+import React from "react";
+import { useStations } from "../../../hooks/useStations";
+import StationsListAdmin from "../../../components/admin/stations/StationsListAdmin";
+
+const StationsList = () => {
+
+  const { stations, useDeleteStation } = useStations();
+
   return (
-    <div>StationsList</div>
+    // console.log(stations),
+    <div>
+      <StationsListAdmin stations={stations} delete_station={useDeleteStation}/>
+    </div>
   )
 }
 
+export default StationsList;

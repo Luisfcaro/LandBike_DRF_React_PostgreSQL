@@ -12,5 +12,8 @@ const Axios = () => {
         }
     })
 
+    return api;
+
 }
 
+export default Axios;

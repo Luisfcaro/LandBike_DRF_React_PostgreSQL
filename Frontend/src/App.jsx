@@ -1,5 +1,12 @@
+import './App.css';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Header from './components/Layout/Header/Header';
+import Footer from './components/Layout/Footer/Footer';
+import SpinnerLoading from './components/Layout/SpinnerLoading/SpinnerLoading';
+import { StationContextProvider } from './context/StationContext';
+
 
 const Home = React.lazy(() => import('./pages/Home/Home'));
 const StationsList = React.lazy(() => import('./pages/admin/stations/StationsList'));
@@ -8,20 +15,28 @@ const StationsEdit = React.lazy(() => import('./pages/admin/stations/StationsEdi
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to='/Home ' />} />
-          <Route path="/home" element={<Home />} />
+    <div className="App">
+      <Suspense fallback={<SpinnerLoading />}>
+        <BrowserRouter>
+          <StationContextProvider>
+            <Header />
 
-          <Route path="/dashboard/stations" element={<StationsList />} />
-          <Route path="/dashboard/stations/create" element={<StationsCreate />} />
-          <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
 
-          <Route path="*" element={<div>Not Found</div>} />
-        </Routes>
-      </BrowserRouter>
-    </Suspense>
+              <Route path="/dashboard/stations" element={<StationsList />} />
+              <Route path="/dashboard/stations/create" element={<StationsCreate />} />
+              <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
+
+            </Routes>
+
+            <Footer />
+          </StationContextProvider>
+        </BrowserRouter>
+      </Suspense>
+
+    </div>
   );
 }
 
