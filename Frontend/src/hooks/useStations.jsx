@@ -63,6 +63,7 @@ export function useStations() {
                 .then(({ data, status }) => {
                     if (status === 200) {
                         let old_stations = [...stations];
+                        console.log(old_stations);
                         const index = old_stations.findIndex(station => station.id !== id)
                         if (index !== 1) {
                             old_stations[index] = data;

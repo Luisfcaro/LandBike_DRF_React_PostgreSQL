@@ -3,7 +3,7 @@ import './StationCardAdmin.css';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function StationCardAdmin({ station , delete_station }) {
+export default function StationCardAdmin({ station, delete_station }) {
 
     const navigate = useNavigate();
 
@@ -13,20 +13,22 @@ export default function StationCardAdmin({ station , delete_station }) {
 
 
     return (
-        <div className="myCard">
-            <div className="innerCard">
-                <div className="frontSide">
-                    <p className="title">{station.station_name}</p>
-                    <p>{station.location}</p>
-                </div>
-                <div className="backSide">
-                    <p className="title">{station.station_desc}</p>
-                    <p>{station.id}</p>
-                    <button className="button" onClick={() => redirects.update_station(station.id)}>Editar Estacion</button>
-                    <button className="button" onClick={() => delete_station(station.id)}>Eliminar Estacion</button>
-                    {/* <StationModalDelete station={station} delete_station={delete_station}/> */}
+            <div className="col-lg-4 col-md-6">
+                <div className="item">
+                    <a href="property-details.html"><img src="" alt="Station_image" /></a>
+                    <span className="category">{station.location}</span>
+                    <h6>{station.station_name}</h6>
+                    <h4><a href="property-details.html">{station.station_desc}</a></h4>
+                    <ul>
+                        <li>Zona: <span>{station.id_zone}</span></li>
+                    </ul>
+                    <div className="main-button">
+                        <button className="button" onClick={() => redirects.update_station(station.id)}>Editar Estacion</button>
+                        <button className="button" onClick={() => delete_station(station.id)}>Eliminar Estacion</button>
+
+                    </div>
+
                 </div>
             </div>
-        </div>
     )
 }
