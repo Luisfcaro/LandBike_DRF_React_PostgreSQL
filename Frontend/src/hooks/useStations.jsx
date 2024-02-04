@@ -1,17 +1,31 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useState , useEffect} from "react";
 import StationContext from "../context/StationContext";
 import StationService from "../services/StationService";
 import { set } from "react-hook-form";
+import SlotService from "../services/SlotService";
 
 export function useStations() {
     const { stations, setStations } = useContext(StationContext);
     const [oneStation, setOneStation] = useState({});
     const [Validated, setValidated] = useState(false);
+    const [stationSlots, setStationSlots] = useState([]);
+
+    useEffect(() => {
+        const station = { 'station_id': oneStation.id };
+        SlotService.getSlots(station)
+            .then((data) => {
+                // console.log(data);
+                setStationSlots(data);
+            })
+            .catch(e => console.error(e));
+    }, [oneStation]);
+
+
 
     const useDeleteStation = useCallback (
         (id) => {
             StationService.deleteStation(id)
-                .then(({ status }) => {
+                .then(({ data, status }) => {
                     if (status === 204) {
                         console.log('Estacion eliminada con exito');
                         setStations(stations.filter(station => station.id !== id))

@@ -15,6 +15,7 @@ class StationSerializer(serializers.ModelSerializer):
             'station_name': instance.station_name,
             'station_status': instance.station_status,
             'image': instance.image,
+            'location': instance.location,
             'qty_slots': qty_slots,
             'bikes_aviable': bikes_aviable
         }

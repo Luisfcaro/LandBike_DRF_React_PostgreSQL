@@ -12,8 +12,6 @@ const StationsEdit = () => {
 
   const form_type = "edit";
 
-
-
   useEffect(() => {
     if (id !== '') {
       useOneStation(id);
