@@ -13,9 +13,11 @@ export function useStations() {
     useEffect(() => {
         const station = { 'station_id': oneStation.id };
         SlotService.getSlots(station)
-            .then((data) => {
-                // console.log(data);
-                setStationSlots(data);
+            .then(({data , status}) => {
+                if (status === 200) {
+                    // console.log(data);
+                    setStationSlots(data);
+                }
             })
             .catch(e => console.error(e));
     }, [oneStation]);
@@ -44,8 +46,6 @@ export function useStations() {
                 id_zone: data.id_zone,
                 num_slots: data.num_slots
             }
-
-            console.log(data_station);
 
             StationService.createStation(data_station)
                 .then(({ data, status }) => {
@@ -116,6 +116,6 @@ export function useStations() {
 
 
 
-    return { stations, setStations, useDeleteStation, useAddStation, useUpdateStation, useOneStation, oneStation, setOneStation, Validated, setValidated };
+    return { stations, setStations, useDeleteStation, useAddStation, useUpdateStation, useOneStation, oneStation, setOneStation, Validated, setValidated, stationSlots, setStationSlots};
 }
 

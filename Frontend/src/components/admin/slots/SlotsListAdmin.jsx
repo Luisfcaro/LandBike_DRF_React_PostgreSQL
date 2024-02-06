@@ -19,7 +19,7 @@ const SlotsListAdmin = ({ slots, delete_slot }) => {
                             Crear Slot
                         </button>
                         {slots.map((slot) => (
-                            <SlotCardAdmin key={slot.id} slot={slot} delete_slot={delete_slot} />
+                            <SlotCardAdmin key={slot.slug} slot={slot} delete_slot={delete_slot} />
                         ))}
                     </div>
                 </div>

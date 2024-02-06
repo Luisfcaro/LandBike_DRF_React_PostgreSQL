@@ -8,9 +8,10 @@ export function SlotContextProvider({children}) {
 
     useEffect(() => {
         SlotsService.getSlots()
-        .then((data) => {
-            // console.log(data);
-            setSlots(data);
+        .then(({data, status}) => {
+            if (status === 200) {
+                setSlots(data);
+            }
         });
     },[setSlots]);
 

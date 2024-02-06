@@ -5,11 +5,12 @@ const SlotService = {
     getSlots: async (station = null) => {
         try {
             const response = await api().get("rest/slots/", { params: station });
-            return response.data;
+            return response;
         } catch (error) {
             console.error(error);
         }
     },
+
 
     getSlot: async (slug) => {
         try {

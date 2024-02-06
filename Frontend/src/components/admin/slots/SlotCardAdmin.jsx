@@ -14,6 +14,7 @@ const SlotCardAdmin = ({ slot, delete_slot }) => {
                 <h4><b>{slot.slot_name}</b></h4>
                 <ul>
                     <li>Estado: <span>{slot.slot_status}</span></li>
+                    <li>Bici asignada: <span>{slot.bike}</span></li>
                 </ul>
                 <div className="main-button">
                     <button className="button" onClick={() => delete_slot(slot.slug)}>

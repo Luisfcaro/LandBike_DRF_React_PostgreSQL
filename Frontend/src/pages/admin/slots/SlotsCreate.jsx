@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-// import SlotFormPage from "../../../components/admin/slots/SlotFormPage";
+import SlotFormPage from "../../../components/admin/slots/SlotFormPage";
 import {useNavigate} from "react-router-dom";
 import {useSlots} from "../../../hooks/useSlots";
 
@@ -18,7 +18,7 @@ const SlotsCreate = () => {
             <div className='title'>
                 <h1>Crear Slot</h1>
             </div>
-            {/* <SlotFormPage sendData={(data) => useAddSlot(data)}/> */}
+            <SlotFormPage sendData={(data) => useAddSlot(data)}/>
         </div>
     )
 }

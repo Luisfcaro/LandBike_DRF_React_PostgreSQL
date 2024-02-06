@@ -8,6 +8,7 @@ import Footer from './components/Layout/Footer/Footer';
 import SpinnerLoading from './components/Layout/SpinnerLoading/SpinnerLoading';
 import { StationContextProvider } from './context/StationContext';
 import { SlotContextProvider } from './context/SlotContext';
+import { BikeContextProvider } from './context/BikeContext';
 
 
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -16,6 +17,14 @@ const StationsCreate = React.lazy(() => import('./pages/admin/stations/StationsC
 const StationsEdit = React.lazy(() => import('./pages/admin/stations/StationsEdit'));
 const SlotsCreate = React.lazy(() => import('./pages/admin/slots/SlotsCreate'));
 const SlotsList = React.lazy(() => import('./pages/admin/slots/SlotsList'));
+const BikesList = React.lazy(() => import('./pages/admin/bikes/BikesList'));
+const BikesCreate = React.lazy(() => import('./pages/admin/bikes/BikesCreate'));
+const BikesEdit = React.lazy(() => import('./pages/admin/bikes/BikesEdit'));
+
+
+const StationsListClient = React.lazy(() => import('./pages/client/stations/StationsListClient'));
+const StationDetails = React.lazy(() => import('./pages/client/stations/StationDetails'));
+
 
 function App() {
   return (
@@ -24,27 +33,36 @@ function App() {
         <BrowserRouter>
           <StationContextProvider>
             <SlotContextProvider>
-            <Header />
+              <BikeContextProvider>
+                <Header />
 
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/home" element={<Home />} />
 
-              <Route path="/dashboard/stations" element={<StationsList />} />
-              <Route path="/dashboard/stations/create" element={<StationsCreate />} />
-              <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
+                  <Route path="/dashboard/stations" element={<StationsList />} />
+                  <Route path="/dashboard/stations/create" element={<StationsCreate />} />
+                  <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
 
-              <Route path="/dashboard/slots" element={<SlotsList />} />
-              <Route path="/dashboard/slots/create" element={<SlotsCreate />} />
+                  <Route path="/dashboard/slots" element={<SlotsList />} />
+                  <Route path="/dashboard/slots/create" element={<SlotsCreate />} />
 
-            </Routes>
+                  <Route path="/dashboard/bikes" element={<BikesList />} />
+                  <Route path="/dashboard/bikes/create" element={<BikesCreate />} />
+                  <Route path="/dashboard/bikes/:slug/edit" element={<BikesEdit />} />
 
-            <Footer />
+
+                  <Route path="/stations" element={<StationsListClient />} />
+                  <Route path="/station/:id" element={<StationDetails />} />
+
+                </Routes>
+
+                <Footer />
+              </BikeContextProvider>
             </SlotContextProvider>
           </StationContextProvider>
         </BrowserRouter>
       </Suspense>
-
     </div>
   );
 }

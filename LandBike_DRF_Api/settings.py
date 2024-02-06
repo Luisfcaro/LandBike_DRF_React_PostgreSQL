@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-il0l8ql-68&w&6k^&@gifo-40r-ir9x5-w+ew)h@sy_#52e^0h'
+SECRET_KEY = 'EnElDiaMasBrillanteNiEnLaNocheMasOscuraNingunMalEscaparaDeMiVistaYDeMiFiguraQueAquellosQueSiguenLoOscuroYSePierdenSeCieguenAnteElPoderDeLinternaVerde'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,3 +135,14 @@ CORS_ORIGIN_ALLOW_ALL = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#AUTH_USER_MODEL = ''
+
+# REST_FRAMEWORK
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+
+    ],
+}
+
