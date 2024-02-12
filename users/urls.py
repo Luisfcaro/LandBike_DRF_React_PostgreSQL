@@ -14,5 +14,6 @@ urlpatterns = [
     path('rest/user/<str:uuid>/', include(router.urls)),
     path('rest/register/', UserViewSet.as_view({'post': 'register'})),
     path('rest/login/', UserViewSet.as_view({'post': 'login'})),
+    path('rest/refreshtoken/', UserInfoViewSet.as_view({'post': 'refresh_token'})),
 ]
 

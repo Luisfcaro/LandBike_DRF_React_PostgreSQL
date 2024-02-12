@@ -49,6 +49,14 @@ class UserInfoViewSet(viewsets.ModelViewSet):
         response = UserSerializer.get_user(context=context)
         return Response(response)
     
+    def refresh_token(self, request):
+        data = request.data
+        context = {
+            'ref_token': data['ref_token']
+        }
+        response = UserSerializer.refresh_token(context=context)
+        return Response(response)
+    
 
 
 

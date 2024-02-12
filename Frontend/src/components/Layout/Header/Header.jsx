@@ -1,8 +1,30 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
+// import AuthContext from '../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
+  const navigate = useNavigate();
+  // const { user, isAuth, isAdmin, logout } = useContext(AuthContext);
+
+  const redirects = {
+
+    home: () => navigate('/home'),
+    dashboard_stations: () => navigate('/dashboard/stations'),
+    dashboard_slots: () => navigate('/dashboard/slots'),
+    dashboard_bikes: () => navigate('/dashboard/bikes'),
+
+    stations: () => navigate('/stations'),
+    slots: () => navigate('/slots'),
+
+
+    login: () => navigate('/login'),
+    register: () => navigate('/register'),
+  }
+
+
+
   return (
     <div>
       <div className="sub-header">
@@ -30,20 +52,15 @@ export default function Header() {
           <div className="row">
             <div className="col-12">
               <nav className="main-nav">
-                {/* <!-- ***** Logo Start ***** --> */}
-                <a href="/" className="logo">
+                <a href="/home" className="logo">
                   <h1>LandBike</h1>
                 </a>
-                {/* <!-- ***** Logo End ***** --> */}
-                {/* <!-- ***** Menu Start ***** --> */}
                 <ul className="nav">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/dashboard/stations">Stations</a></li>
-                  <li><a href="/dashboard/slots">Slots</a></li>
-                  <li><a href="/dashboard/bikes">Bikes</a></li>
-                  <li><a href="/dashboard/users">Users</a></li>
+                  <li onClick={() => redirects.home()}><a>Home</a></li>
+                  <li onClick={() => redirects.dashboard_stations()}><a >Admin Stations</a></li>
+                  <li onClick={() => redirects.dashboard_slots()}><a >Admin Slots</a></li>
+                  <li onClick={() => redirects.dashboard_bikes()}><a >Admin Bikes</a></li>
                 </ul>
-                {/* <!-- ***** Menu End ***** --> */}
               </nav>
             </div>
           </div>

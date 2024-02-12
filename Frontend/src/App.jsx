@@ -9,6 +9,8 @@ import SpinnerLoading from './components/Layout/SpinnerLoading/SpinnerLoading';
 import { StationContextProvider } from './context/StationContext';
 import { SlotContextProvider } from './context/SlotContext';
 import { BikeContextProvider } from './context/BikeContext';
+import { AuthContextProvider } from './context/AuthContext';
+import AdminGuard from './services/guards/AdminGuard';
 
 
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -21,6 +23,9 @@ const BikesList = React.lazy(() => import('./pages/admin/bikes/BikesList'));
 const BikesCreate = React.lazy(() => import('./pages/admin/bikes/BikesCreate'));
 const BikesEdit = React.lazy(() => import('./pages/admin/bikes/BikesEdit'));
 
+const Register = React.lazy(() => import('./pages/Auth/Register'));
+const Login = React.lazy(() => import('./pages/Auth/Login'));
+
 
 const StationsListClient = React.lazy(() => import('./pages/client/stations/StationsListClient'));
 const StationDetails = React.lazy(() => import('./pages/client/stations/StationDetails'));
@@ -31,36 +36,44 @@ function App() {
     <div className="App">
       <Suspense fallback={<SpinnerLoading />}>
         <BrowserRouter>
-          <StationContextProvider>
-            <SlotContextProvider>
-              <BikeContextProvider>
-                <Header />
+          <AuthContextProvider>
+            <StationContextProvider>
+              <SlotContextProvider>
+                <BikeContextProvider>
+                  <Header />
 
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/home" element={<Home />} />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
 
-                  <Route path="/dashboard/stations" element={<StationsList />} />
-                  <Route path="/dashboard/stations/create" element={<StationsCreate />} />
-                  <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
+                    <Route element={<AdminGuard />}>
 
-                  <Route path="/dashboard/slots" element={<SlotsList />} />
-                  <Route path="/dashboard/slots/create" element={<SlotsCreate />} />
+                      <Route path="/dashboard/stations" element={<StationsList />} />
+                      <Route path="/dashboard/stations/create" element={<StationsCreate />} />
+                      <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
 
-                  <Route path="/dashboard/bikes" element={<BikesList />} />
-                  <Route path="/dashboard/bikes/create" element={<BikesCreate />} />
-                  <Route path="/dashboard/bikes/:slug/edit" element={<BikesEdit />} />
+                      <Route path="/dashboard/slots" element={<SlotsList />} />
+                      <Route path="/dashboard/slots/create" element={<SlotsCreate />} />
+
+                      <Route path="/dashboard/bikes" element={<BikesList />} />
+                      <Route path="/dashboard/bikes/create" element={<BikesCreate />} />
+                      <Route path="/dashboard/bikes/:slug/edit" element={<BikesEdit />} />
+
+                    </Route>
 
 
-                  <Route path="/stations" element={<StationsListClient />} />
-                  <Route path="/station/:id" element={<StationDetails />} />
+                    <Route path="/stations" element={<StationsListClient />} />
+                    <Route path="/station/:id" element={<StationDetails />} />
 
-                </Routes>
+                  </Routes>
 
-                <Footer />
-              </BikeContextProvider>
-            </SlotContextProvider>
-          </StationContextProvider>
+                  <Footer />
+                </BikeContextProvider>
+              </SlotContextProvider>
+            </StationContextProvider>
+          </AuthContextProvider>
         </BrowserRouter>
       </Suspense>
     </div>

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import SingUpForm from "../../components/client/login/SingUpForm";
+import SingInForm from "../../components/client/login/SingInForm";
 import useAuth from "../../hooks/useAuth";
 
-const Register = () => {
-    const { isCorrect, useRegister, errorMSG } = useAuth();
+const Login = () => {
+    const { isCorrect, useLogin, errorMSG } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,10 +15,10 @@ const Register = () => {
 
     return (
         <div>
-            <h1>Register</h1>
-            <SingUpForm send_data={(data => useRegister(data))} errorMSG={errorMSG} />
+            <h1>Login</h1>
+            <SingInForm send_data={(data => useLogin(data))} errorMSG={errorMSG} />
         </div>
     );
 };
 
-export default Register;
+export default Login;
