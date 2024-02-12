@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'stations',
     'slots',
-    'bikes'
+    'bikes',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -136,13 +137,13 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#AUTH_USER_MODEL = ''
+AUTH_USER_MODEL = 'users.User'
 
 # REST_FRAMEWORK
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-
+        'users.backends.JWTAuthentication',
     ],
 }
 
