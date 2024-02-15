@@ -18,7 +18,6 @@ export default function Header() {
     stations: () => navigate('/stations'),
     slots: () => navigate('/slots'),
 
-
     login: () => navigate('/login'),
     register: () => navigate('/register'),
   }
@@ -60,6 +59,8 @@ export default function Header() {
                   <li onClick={() => redirects.dashboard_stations()}><a >Admin Stations</a></li>
                   <li onClick={() => redirects.dashboard_slots()}><a >Admin Slots</a></li>
                   <li onClick={() => redirects.dashboard_bikes()}><a >Admin Bikes</a></li>
+                  <li onClick={() => redirects.register()}><a >Register</a></li>
+                  <li onClick={() => redirects.login()}><a >Login</a></li>
                 </ul>
               </nav>
             </div>

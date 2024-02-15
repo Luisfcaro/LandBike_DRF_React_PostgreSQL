@@ -22,6 +22,7 @@ export function AuthContextProvider({ children }) {
                         setToken(data.token);
                         setUser(data);
                         setIsAuth(true);
+                        setIsAdmin(data.user.type === 'admin');
                     }
                 })
                 .catch(() => {

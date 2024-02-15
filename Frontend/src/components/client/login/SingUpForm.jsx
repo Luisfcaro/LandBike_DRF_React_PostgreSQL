@@ -52,6 +52,9 @@ const SingUpForm = ({ send_data, errorMSG }) => {
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Registrarme</button>
                     </div>
+                    <div className="form-group">
+                        <div className="error">{errorMSG}</div>
+                    </div>
                 </form>
             </div>
         </div>

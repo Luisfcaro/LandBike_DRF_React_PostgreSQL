@@ -5,12 +5,22 @@ from rest_framework.decorators import action
 from .serializer import SlotSerializer
 from .models import Slot
 
+from rest_framework.permissions import (AllowAny, IsAuthenticated)
+from LandBike_DRF_Api.core.permissions import IsAdmin
+
 
 # Create your views here.
 class SlotViewSet(viewsets.ModelViewSet):
     queryset = Slot.objects.all()
     serializer_class = SlotSerializer
     lookup_field = 'slug'
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated, IsAdmin]
+        return super(SlotViewSet, self).get_permissions()
 
     def get_object(self):
         queryset = self.filter_queryset(self.get_queryset())

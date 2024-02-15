@@ -36,6 +36,7 @@ const Axios = () => {
         (error) => {
             if (error.response.status === 403) {
                 JWTService.destroyToken();
+                JWTService.destroyRefreshToken();
                 window.location.reload();
             }
             return Promise.reject(error);

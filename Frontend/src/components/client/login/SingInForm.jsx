@@ -40,6 +40,11 @@ const SignInForm = ({ send_data, errorMSG }) => {
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
                     </div>
+                    <div className="form-group">
+                        <div className="error">
+                            <label htmlFor="error">{errorMSG}</label>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

@@ -14,10 +14,8 @@ const AdminGuard = () => {
     if (!isAdmin) {
         AuthService.GetActualUser()
             .then(({ data, status }) => {
-                if (status == 200) {
-                    if (data.user.type == "admin") {
-                        setTimeout(() => { navigate("/dashboard/stations"); }, 200);
-                    }
+                if (status == 200 && data.user.type == "admin") {
+                    setTimeout(() => { navigate('/dashboard/stations'); }, 200);
                 }
             })
     }

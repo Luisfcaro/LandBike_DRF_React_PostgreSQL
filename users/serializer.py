@@ -16,8 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         if (email_exists > 0 or username_exist > 0):
             return {
-                'status': False,
-                'message': 'User or Email already exists'
+                'error': 'User already exists'
             }
         
         user = User.objects.create_user(username=username, email=email, password=password , type='user')
@@ -41,14 +40,12 @@ class UserSerializer(serializers.ModelSerializer):
 
         if user is None:
             return {
-                'status': False,
-                'message': 'User not found'
+                'error': 'User not found'
             }
         
         if not user.check_password(password):
             return {
-                'status': False,
-                'message': 'Invalid password'
+                'error': 'Invalid password'
             }
         
         return {
@@ -68,8 +65,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         if user is None:
             return {
-                'status': False,
-                'message': 'User not found'
+                'error': 'User not found'
             }
         
         return {
@@ -89,8 +85,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         if user is None:
             return {
-                'status': False,
-                'message': 'User not found'
+                'error': 'User not found'
             }
         
         return {

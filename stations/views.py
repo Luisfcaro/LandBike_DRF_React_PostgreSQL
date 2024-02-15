@@ -5,11 +5,21 @@ from rest_framework.decorators import action
 from .serializer import StationSerializer
 from .models import Station
 
+from rest_framework.permissions import (AllowAny, IsAuthenticated)
+from LandBike_DRF_Api.core.permissions import IsAdmin
+
 # Create your views here
 
 class StationViewSet(viewsets.ModelViewSet):
     queryset = Station.objects.all()
     serializer_class = StationSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated, IsAdmin]
+        return super(StationViewSet, self).get_permissions()
     
     def partial_update(self, request, *args, **kwargs):
         kwargs['partial'] = True

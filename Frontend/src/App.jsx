@@ -10,7 +10,9 @@ import { StationContextProvider } from './context/StationContext';
 import { SlotContextProvider } from './context/SlotContext';
 import { BikeContextProvider } from './context/BikeContext';
 import { AuthContextProvider } from './context/AuthContext';
+
 import AdminGuard from './services/guards/AdminGuard';
+import AuthGuard from './services/guards/AuthGuard';
 
 
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -65,7 +67,10 @@ function App() {
 
 
                     <Route path="/stations" element={<StationsListClient />} />
-                    <Route path="/station/:id" element={<StationDetails />} />
+
+                    <Route element={<AuthGuard />}>
+                      <Route path="/station/:id" element={<StationDetails />} />
+                    </Route>
 
                   </Routes>
 
