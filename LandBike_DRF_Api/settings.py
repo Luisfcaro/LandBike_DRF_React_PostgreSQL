@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'LandBike_DRF_Api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'LandBike',
-        'USER': 'postgres',
+        'NAME': 'landbike',
+        'USER': 'luis',
         'PASSWORD': '178aj900',
-        'HOST': 'localhost',
+        'HOST': 'postgres',
         'PORT': '5432',
     }
 }

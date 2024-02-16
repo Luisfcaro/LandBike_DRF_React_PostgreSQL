@@ -5,13 +5,11 @@ services:
     image: postgres
     container_name: postgres_container
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: luis
       POSTGRES_PASSWORD: 178aj900
-      POSTGRES_DB: LandBike
     volumes:
-      - ./postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
-      # - ./postgresql/dump.sql:/docker-entrypoint-initdb.d/dump.sql
       - postgres_data:/var/lib/postgresql/data
+      - ./postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
     restart: always
@@ -25,11 +23,15 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+    environment:
+      - PG_USER=luis
+      - PG_PASSWORD=178aj900
+      - PG_DB=landbike
+      - PG_PORT=5432
+      - PG_HOST=postgres
     depends_on:
       - postgres
-    environment:
-      - DATABASE_URL=postgres://postgres:178aj900@postgres/LandBike
-    restart: always
+    restart: unless-stopped
 
 
   frontend:
@@ -37,12 +39,8 @@ services:
       context: ./Frontend
       dockerfile: Dockerfile
     container_name: frontend_container
-    volumes:
-      - ./Frontend:/app/frontend
     ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+      - "5173:5173"
     restart: always
 
   pgadmin:

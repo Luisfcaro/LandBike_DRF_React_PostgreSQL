@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./wait-for-postgres.sh local_pgdb 5432
+./wait-for-postgres.sh postgres 5432
 
 until PGPASSWORD=$PG_PASSWORD psql -h $PG_HOST -U $PG_USER -lqt | cut -d \| -f 1 | grep -qw $PG_DB; do
   echo "Waiting for the '$PG_DB' database to be created..."

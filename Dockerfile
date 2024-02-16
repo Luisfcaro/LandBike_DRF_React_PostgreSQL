@@ -16,7 +16,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Agrupar el código fuente de la aplicación
-COPY .
+COPY . .
 
 # Segunda etapa: crear la imagen final
 FROM python:3-slim
@@ -41,4 +41,4 @@ RUN chmod +x /django_backend/wait-for-postgres.sh
 EXPOSE 8000
 
 # Entrypoint para ejecutar el archivo django.sh
-ENTRYPOINT ["/app_django/django.sh"]
+ENTRYPOINT ["/django_backend/django.sh"]
