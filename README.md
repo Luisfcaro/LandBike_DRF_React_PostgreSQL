@@ -110,7 +110,7 @@ Nota: El proyecto se encuentra en una fase beta, lo que podría limitar algunas 
 
 Para iniciar la aplicación:
 
-Ejecute Docker Compose: 
+Ejecute Docker Compose (Esto debe realizarse en la carpeta Raíz del proyecto): 
 ```
 docker-compose up --build
 ```
