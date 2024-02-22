@@ -12,6 +12,7 @@ import { BikeContextProvider } from './context/BikeContext';
 import { AuthContextProvider } from './context/AuthContext';
 import { RentContextProvider } from './context/RentContext';
 import { IncidentContextProvider } from './context/IncidentContext';
+import { NotificationContextProvider } from './context/NotificationContext';
 
 import AdminGuard from './services/guards/AdminGuard';
 import AuthGuard from './services/guards/AuthGuard';
@@ -32,6 +33,8 @@ const RentList = React.lazy(() => import('./pages/admin/rents/RentList'));
 const IncidentsList = React.lazy(() => import('./pages/admin/incidents/IncidentsList'));
 const IncidentsCreate = React.lazy(() => import('./pages/client/incidents/IncidentsCreate'));
 const IncidentsEdit = React.lazy(() => import('./pages/admin/incidents/IncidentsEdit'));
+
+const NotificationsListClient = React.lazy(() => import('./pages/client/notifications/NotificationsListClient'));
 
 const Register = React.lazy(() => import('./pages/Auth/Register'));
 const Login = React.lazy(() => import('./pages/Auth/Login'));
@@ -54,44 +57,47 @@ function App() {
                 <BikeContextProvider>
                   <RentContextProvider>
                     <IncidentContextProvider>
-                      <Header />
+                      <NotificationContextProvider>
+                        <Header />
 
-                      <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/login" element={<Login />} />
+                        <Routes>
+                          <Route path="/" element={<Home />} />
+                          <Route path="/home" element={<Home />} />
+                          <Route path="/register" element={<Register />} />
+                          <Route path="/login" element={<Login />} />
 
-                        <Route element={<AdminGuard />}>
+                          <Route element={<AdminGuard />}>
 
-                          <Route path="/dashboard/stations" element={<StationsList />} />
-                          <Route path="/dashboard/stations/create" element={<StationsCreate />} />
-                          <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
+                            <Route path="/dashboard/stations" element={<StationsList />} />
+                            <Route path="/dashboard/stations/create" element={<StationsCreate />} />
+                            <Route path="/dashboard/stations/:id/edit" element={<StationsEdit />} />
 
-                          <Route path="/dashboard/slots" element={<SlotsList />} />
-                          <Route path="/dashboard/slots/create" element={<SlotsCreate />} />
+                            <Route path="/dashboard/slots" element={<SlotsList />} />
+                            <Route path="/dashboard/slots/create" element={<SlotsCreate />} />
 
-                          <Route path="/dashboard/bikes" element={<BikesList />} />
-                          <Route path="/dashboard/bikes/create" element={<BikesCreate />} />
-                          <Route path="/dashboard/bikes/:slug/edit" element={<BikesEdit />} />
+                            <Route path="/dashboard/bikes" element={<BikesList />} />
+                            <Route path="/dashboard/bikes/create" element={<BikesCreate />} />
+                            <Route path="/dashboard/bikes/:slug/edit" element={<BikesEdit />} />
 
-                          <Route path="/dashboard/rents" element={<RentList />} />
+                            <Route path="/dashboard/rents" element={<RentList />} />
 
-                          <Route path="/dashboard/incidents" element={<IncidentsList />} />
-                          <Route path="/dashboard/incidents/:id/edit" element={<IncidentsEdit />} />
-                        </Route>
+                            <Route path="/dashboard/incidents" element={<IncidentsList />} />
+                            <Route path="/dashboard/incidents/:id/edit" element={<IncidentsEdit />} />
+                          </Route>
 
 
-                        <Route path="/stations" element={<StationsListClient />} />
+                          <Route path="/stations" element={<StationsListClient />} />
 
-                        {/* <Route element={<AuthGuard />}> */}
-                          <Route path="/station/:id" element={<StationDetails />} />
-                          <Route path="/create_incident/:slug" element={<IncidentsCreate />} />
-                        {/* </Route> */}
+                          <Route element={<AuthGuard />}>
+                            <Route path="/station/:id" element={<StationDetails />} />
+                            <Route path="/create_incident/:slug" element={<IncidentsCreate />} />
+                            <Route path="/notifications" element={<NotificationsListClient />} />
+                          </Route>
 
-                      </Routes>
+                        </Routes>
 
-                      <Footer />
+                        <Footer />
+                      </NotificationContextProvider>
                     </IncidentContextProvider>
                   </RentContextProvider>
                 </BikeContextProvider>

@@ -18,7 +18,7 @@ export default function Header() {
     dashboard_incidents: () => navigate('/dashboard/incidents'),
 
     stations: () => navigate('/stations'),
-    slots: () => navigate('/slots'),
+    notifications: () => navigate('/notifications'),
 
     login: () => navigate('/login'),
     register: () => navigate('/register'),
@@ -33,11 +33,13 @@ export default function Header() {
     <li onClick={() => redirects.dashboard_bikes()}><a >Admin Bikes</a></li>
     <li onClick={() => redirects.dashboard_rents()}><a >Admin Rents</a></li>
     <li onClick={() => redirects.dashboard_incidents()}><a >Admin Incidents</a></li>
+    <li onClick={() => logout()}><a >Logout</a></li>
   </ul> : <ul className=""></ul>
 
   const isAuthUser = isAuth && !isAdmin ? <ul className="nav">
     <li onClick={() => redirects.home()}><a>Home</a></li>
     <li onClick={() => redirects.stations()}><a >Stations</a></li>
+    <li onClick={() => redirects.notifications()}><a >Notifications</a></li>
     <li onClick={() => logout()}><a >Logout</a></li>
   </ul> : <ul className=""></ul>
 
