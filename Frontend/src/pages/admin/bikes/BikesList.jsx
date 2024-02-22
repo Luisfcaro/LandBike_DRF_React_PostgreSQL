@@ -3,7 +3,6 @@ import { useBikes } from "../../../hooks/useBikes";
 import BikesListAdmin from "../../../components/admin/bikes/BikesListAdmin";
 
 const BikesList = () => {
-
     const { bikes, useDeleteBike } = useBikes();
 
     return (

@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import Incident
 from users.models import User
 from slots.models import Slot
-
+from notifications.models import Notification
 
 class IncidentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,6 +42,14 @@ class IncidentSerializer(serializers.ModelSerializer):
         
         incident = Incident.objects.create(user=user, slot=slot, description=description)
 
+        notification = Notification.objects.create(
+            user=user,
+            message='Se ha reportado un incidente en el slot ' + slot_slug + ' con la siguiente descripción: ' + description
+        )
+
+        slot.slot_status = "En mantenimiento"
+        slot.save()
+
         return {
             'incident' : {
                 'id': incident.id,
@@ -68,10 +76,26 @@ class IncidentSerializer(serializers.ModelSerializer):
         
         incident = Incident.objects.get(user__username=username, id=incident_id)
 
+        notification = Notification.objects.create(
+            user=user,
+            message='Se ha resuelto el incidente ' + str(incident_id)
+        )
+
         if incident is None:
             return {
                 'error': 'Incident not found'
             }
+        
+        slot = Slot.objects.get(slug=incident.slot.slug)
+
+        if slot is None:
+            return {
+                'error': 'Slot not found'
+            }
+        
+        slot.slot_status = "No disponible"
+        slot.bike = None
+        slot.save()
         
         if incident.state == 'resolved':
             return {

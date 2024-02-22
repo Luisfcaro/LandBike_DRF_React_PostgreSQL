@@ -16,7 +16,7 @@ class RentSerializer(serializers.ModelSerializer):
             'user': instance.user.username,
             'bike': instance.bike.id,
             'initial_slot': instance.initial_slot.slug,
-            'final_slot': instance.final_slot.slug,
+            'final_slot': instance.final_slot.slug if instance.final_slot else None,
             'rent_date': instance.rent_date,
             'return_date': instance.return_date
         }
@@ -47,6 +47,7 @@ class RentSerializer(serializers.ModelSerializer):
             }
         
         initial_slot.bike = None
+        initial_slot.slot_status = 'No disponible'
         initial_slot.save()
         
         rent = Rent.objects.create(user=user, bike=bike, initial_slot=initial_slot)
@@ -88,6 +89,7 @@ class RentSerializer(serializers.ModelSerializer):
             }
         
         final_slot.bike = bike
+        final_slot.slot_status = 'Disponible'
         final_slot.save()
 
         rent.final_slot = final_slot

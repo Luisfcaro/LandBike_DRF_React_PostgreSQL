@@ -8,6 +8,7 @@ const BikesCreate = () => {
     const navigate = useNavigate();
     const form_type = 'create';
 
+
     useEffect(() => {
         if (Validated) {
             navigate("/dashboard/bikes");

@@ -1,10 +1,7 @@
 import React , { useContext } from 'react';
 import { useNavigate, Navigate, Outlet } from 'react-router-dom';
-import AuthContext  from '../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import AuthService from '../../services/AuthService';
-
-
-
 
 const AdminGuard = () => {
     const navigate = useNavigate();

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
-// import AuthContext from '../../../context/AuthContext';
+import AuthContext from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const navigate = useNavigate();
-  // const { user, isAuth, isAdmin, logout } = useContext(AuthContext);
+  const { user, isAuth, isAdmin, logout } = useContext(AuthContext);
 
   const redirects = {
 
@@ -14,6 +14,8 @@ export default function Header() {
     dashboard_stations: () => navigate('/dashboard/stations'),
     dashboard_slots: () => navigate('/dashboard/slots'),
     dashboard_bikes: () => navigate('/dashboard/bikes'),
+    dashboard_rents: () => navigate('/dashboard/rents'),
+    dashboard_incidents: () => navigate('/dashboard/incidents'),
 
     stations: () => navigate('/stations'),
     slots: () => navigate('/slots'),
@@ -21,6 +23,33 @@ export default function Header() {
     login: () => navigate('/login'),
     register: () => navigate('/register'),
   }
+
+  // const isUser = isAuth ? 
+
+  const isAdminUser = isAuth && isAdmin ? <ul className="nav">
+    <li onClick={() => redirects.home()}><a>Home</a></li>
+    <li onClick={() => redirects.dashboard_stations()}><a >Admin Stations</a></li>
+    <li onClick={() => redirects.dashboard_slots()}><a >Admin Slots</a></li>
+    <li onClick={() => redirects.dashboard_bikes()}><a >Admin Bikes</a></li>
+    <li onClick={() => redirects.dashboard_rents()}><a >Admin Rents</a></li>
+    <li onClick={() => redirects.dashboard_incidents()}><a >Admin Incidents</a></li>
+  </ul> : <ul className=""></ul>
+
+  const isAuthUser = isAuth && !isAdmin ? <ul className="nav">
+    <li onClick={() => redirects.home()}><a>Home</a></li>
+    <li onClick={() => redirects.stations()}><a >Stations</a></li>
+    <li onClick={() => redirects.slots()}><a >Slots</a></li>
+    <li onClick={() => logout()}><a >Logout</a></li>
+  </ul> : <ul className=""></ul>
+
+  const isNotAuthUser = !isAuth ? <ul className="nav">
+    <li onClick={() => redirects.home()}><a>Home</a></li>
+    <li onClick={() => redirects.login()}><a >Login</a></li>
+    <li onClick={() => redirects.register()}><a >Register</a></li>
+  </ul> : <ul className=""></ul>
+
+
+
 
 
 
@@ -54,14 +83,9 @@ export default function Header() {
                 <a href="/home" className="logo">
                   <h1>LandBike</h1>
                 </a>
-                <ul className="nav">
-                  <li onClick={() => redirects.home()}><a>Home</a></li>
-                  <li onClick={() => redirects.dashboard_stations()}><a >Admin Stations</a></li>
-                  <li onClick={() => redirects.dashboard_slots()}><a >Admin Slots</a></li>
-                  <li onClick={() => redirects.dashboard_bikes()}><a >Admin Bikes</a></li>
-                  <li onClick={() => redirects.register()}><a >Register</a></li>
-                  <li onClick={() => redirects.login()}><a >Login</a></li>
-                </ul>
+                {isAdminUser}
+                {isAuthUser}
+                {isNotAuthUser}
               </nav>
             </div>
           </div>
