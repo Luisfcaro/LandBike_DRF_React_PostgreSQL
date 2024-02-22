@@ -84,10 +84,10 @@ function App() {
 
                         <Route path="/stations" element={<StationsListClient />} />
 
-                        <Route element={<AuthGuard />}>
+                        {/* <Route element={<AuthGuard />}> */}
                           <Route path="/station/:id" element={<StationDetails />} />
                           <Route path="/create_incident/:slug" element={<IncidentsCreate />} />
-                        </Route>
+                        {/* </Route> */}
 
                       </Routes>
 

@@ -38,7 +38,6 @@ export default function Header() {
   const isAuthUser = isAuth && !isAdmin ? <ul className="nav">
     <li onClick={() => redirects.home()}><a>Home</a></li>
     <li onClick={() => redirects.stations()}><a >Stations</a></li>
-    <li onClick={() => redirects.slots()}><a >Slots</a></li>
     <li onClick={() => logout()}><a >Logout</a></li>
   </ul> : <ul className=""></ul>
 

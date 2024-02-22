@@ -74,10 +74,11 @@ class IncidentSerializer(serializers.ModelSerializer):
                 'error': 'User not found'
             }
         
-        incident = Incident.objects.get(user__username=username, id=incident_id)
+        incident = Incident.objects.get(id=incident_id)
+
 
         notification = Notification.objects.create(
-            user=user,
+            user=incident.user,
             message='Se ha resuelto el incidente ' + str(incident_id)
         )
 

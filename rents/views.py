@@ -19,7 +19,7 @@ class RentViewSet(viewsets.ModelViewSet):
         """
         Define permisos para diferentes acciones
         """
-        if self.action in ['list', 'retrieve', 'destroy']:
+        if self.action in ['retrieve', 'destroy']:
             permission_classes = [IsAdmin]  # Solo los admins para list, retrieve, destroy
         else:
             permission_classes = [IsAuthenticated]  # Todos los autenticados para el resto

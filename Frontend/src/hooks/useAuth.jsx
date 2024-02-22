@@ -21,7 +21,6 @@ export default function useAuth() {
                     JWTService.saveRefreshToken(data.ref_token);
                     setUser(data.user);
                     setToken(data.token);
-                    setUser(data.user);
                     setIsAuth(true);
                     setIsAdmin(data.user.type === 'admin');
                     setIsCorrect(true);
