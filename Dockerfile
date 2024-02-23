@@ -21,24 +21,28 @@ COPY . .
 # Segunda etapa: crear la imagen final
 FROM python:3-slim
 
-COPY --from=builder /app/requirements.txt /django_backend/requirements.txt
+COPY --from=builder /app/requirements.txt /app_django/requirements.txt
 
 # Instalar Django y otras dependencias necesarias
 RUN apt-get update && apt-get install -y postgresql-client libdbd-pg-perl \
-    && pip install --no-cache-dir -r /django_backend/requirements.txt
+    && pip install --no-cache-dir -r /app_django/requirements.txt
 
 # Crear directorio de la aplicación
-WORKDIR /django_backend
+WORKDIR /app_django
 
 # Copiar solo los archivos necesarios de la etapa de construcción
-COPY --from=builder /app /django_backend
+COPY --from=builder /app /app_django
+
+COPY django_script.sh .
+COPY wait-for-postgres.sh .
 
 # Establecer permisos ejecutables para los scripts
-RUN chmod +x /django_backend/django.sh
-RUN chmod +x /django_backend/wait-for-postgres.sh
+RUN chmod +x /app_django/django_script.sh
+RUN chmod +x /app_django/wait-for-postgres.sh
 
 # Exponer puerto
 EXPOSE 8000
 
 # Entrypoint para ejecutar el archivo django.sh
-ENTRYPOINT ["/django_backend/django.sh"]
+# ENTRYPOINT ["/bin/sh", "/app_django/django_script.sh"]
+# CMD ["/bin/sh", "/app_django/django_script.sh"]

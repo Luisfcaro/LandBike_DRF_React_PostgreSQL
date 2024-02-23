@@ -20,9 +20,10 @@ services:
       dockerfile: Dockerfile
     container_name: backend_container
     volumes:
-      - .:/app
+      - .:/app_django
     ports:
       - "8000:8000"
+    command: sh -c "./wait-for-it.sh postgres:5432; python manage.py showmigrations; python manage.py makemigrations; python manage.py migrate; python manage.py runserver 0.0.0.0:8000"
     environment:
       - PG_USER=luis
       - PG_PASSWORD=178aj900
