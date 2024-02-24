@@ -373,7 +373,7 @@ A continuación, se detallan los servicios disponibles en la aplicación LandBik
 |-----------|----------------------------------------|--------------|
 | Frontend  | Interfaz de usuario de LandBike, desarrollada con React.js. | 5173         |
 | Backend   | API y lógica del negocio, implementada con Django Rest Framework. | 8000         |
-| Postgres  | Base de datos PostgreSQL para la gestión eficiente de datos. | 5432         |
+| Postgres  | Base de datos PostgreSQL para la gestión eficiente de datos. | 5433         |
 | pgAdmin   | Herramienta de gestión para Postgres, facilita la administración de la base de datos. | 5050         |
 | LoadBalancer| Actua como proxy, permitiendonos acceder a todas las funcionalidades y servicios de la aplicación a traves de su puerto | 8080 |
 
