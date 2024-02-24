@@ -328,6 +328,43 @@ Acceda a la interfaz principal a través de localhost:8080 y explore las diferen
 ## ⚙ Configuraciones Adicionales tras la ejecucion y pruebas
 Acontinuación le expondremos las configuraciones pertinentes de PGAdmin 4, para que pueda visualizar sus datos correctamente:
 
+### Acedemos a PGAdmin
+Si accedemos a localhost:5050, tendremos a nuestra disposición el panel de login de PGAdmin, donde deberemos introducir las siguientes credenciales:
+
+- Usuario: admin@admin.com
+- Contraseña: root
+
+![Imagen en la que se muestra el login de PGAdmin](assets_readme/InicioPGadmin.PNG)
+
+### Panel de inicio
+Ahora nos encontraremos en el panel de inicio, para poder visualizar nuestros datos deberemos añadir un servidor, para ello, pulsaremos en "add server"
+
+![Imagen del panel inicial de PGAdmin](assets_readme/InicioDashboard.PNG)
+
+### Configuración inicial del servidor
+
+Como podremos apreciar, se nos habra abierto un modal, a continuación, en el apartado "name", escribiremos de que forma deseamos llamar al servidor.
+
+![Imagen de configuración del servidor](assets_readme/ConfigDatabaseName.PNG)
+
+Tras esto, nos dirigiremos al apartado "Connection", en donde especificaremos los siguientes datos:
+
+- Host name/adress: postgres
+- Username: luis
+- Password: 178aj900
+
+![Imagen de configuración del apartado "Connection" del servidor](assets_readme/ConfigDatabaseConnection.PNG)
+
+Y pulsaremos "Save".
+
+Tras esto si desplegamos nuestro servidor y la base de datos "landbike", obtendremos una vista como la siguiente.
+
+![Imagen en la que podemos observar nuestra base de datos](assets_readme/VisibleDatabase.PNG)
+
+A continuación, si hemos seguido las recomendaciones especificadas anteriormente en el apartado de ejecución, podremos dirigirnos a "landbike > Schemas > public > Tables" y pulsamos click derecho sobre la tabla "bikes_bike" y seleccionamos "View/Edit Data > All Rows" podremos observar los datos de nuestra tabla.
+
+![Imagen en la que podemos observar los datod de la tabla "bikes_bike"](assets_readme/ViewData.PNG)
+
 ## 🎫 Servicios y Puertos de LandBike
 
 A continuación, se detallan los servicios disponibles en la aplicación LandBike y los puertos a través de los cuales se pueden acceder:
